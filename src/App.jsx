@@ -1,11 +1,14 @@
 import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 
 function App() {
   return (
-    <div >
-    포트폴리오 만드는 중 ..
- 
+    <div>
+      <Navbar />
+      <div id="about" className="pt-20">
+        <Hero />
+      </div>
     </div>
   );
 }
