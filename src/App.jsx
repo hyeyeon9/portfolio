@@ -5,18 +5,13 @@ import Projects from "./components/Projects";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <div id="about" className="pt-20">
+    <div >
+      <div id="about">
         <Hero />
       </div>
 
-      <div id="projects" className="pt-20">
+      <div id="projects">
         <Projects />
-      </div>
-
-      <div id="contact" className="pt-20">
-        <Contact />
       </div>
     </div>
   );
