@@ -8,25 +8,46 @@ function Navbar() {
           to="about"
           smooth={true}
           duration={500}
+          offset={-80}
           className="cursor-pointer hover:text-blue-500"
         >
           About me
         </Link>
         <Link
+          to="skills"
+          smooth={true}
+          duration={650}
+          offset={-80}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          Skill
+        </Link>
+        <Link
+          to="experience"
+          smooth={true}
+          duration={650}
+          offset={-80}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          Experience
+        </Link>
+        <Link
+          to="strength"
+          smooth={true}
+          duration={650}
+          offset={-80}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          Strength
+        </Link>
+        <Link
           to="projects"
           smooth={true}
-          duration={500}
+          duration={650}
+          offset={-80}
           className="cursor-pointer hover:text-blue-500"
         >
           Project
-        </Link>
-        <Link
-          to="contact"
-          smooth={true}
-          duration={500}
-          className="cursor-pointer hover:text-blue-500"
-        >
-          Contact
         </Link>
       </div>
     </nav>
