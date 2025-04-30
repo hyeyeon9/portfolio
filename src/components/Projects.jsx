@@ -1,9 +1,14 @@
+import { FaGithub } from "react-icons/fa";
 import dashBoardImage from "../assets/images/dashboard.png";
-import cartAnalysisImage from "../assets/images/cart-analysis.png";
 
 function Projects() {
   return (
     <section className="w-full max-w-5xl mx-auto p-8 bg-white">
+      <hr className="-mt-20 mb-10"></hr>
+      <div className="flex items-center gap-3 mb-8">
+        <div className="h-10 w-1 bg-blue-500 rounded-full"></div>
+        <h2 className="text-3xl font-bold text-gray-800">프로젝트</h2>
+      </div>
       {/* 프로젝트 헤더 */}
       <div className="mb-12">
         <h1 className="text-3xl font-bold text-gray-800">
@@ -24,26 +29,42 @@ function Projects() {
               </p>
             </div>
           </div>
-          <div className="mt-4">
-            <p className="font-medium text-gray-700">담당 역할</p>
-            <ul className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
-              <li className="flex items-center text-gray-600">
-                <span className="mr-2 text-blue-500">•</span>
-                장바구니 분석 페이지
-              </li>
-              <li className="flex items-center text-gray-600">
-                <span className="mr-2 text-blue-500">•</span>
-                재고/발주/폐기/유통기한 페이지
-              </li>
-              <li className="flex items-center text-gray-600">
-                <span className="mr-2 text-blue-500">•</span>
-                실시간 알림
-              </li>
-              <li className="flex items-center text-gray-600">
-                <span className="mr-2 text-blue-500">•</span>
-                AI 챗봇
-              </li>
-            </ul>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p className="font-medium text-gray-700">담당 역할</p>
+              <ul className="mt-2 grid grid-cols-1 gap-2">
+                <li className="flex items-center text-gray-600">
+                  <span className="mr-2 text-blue-500">•</span>
+                  장바구니 분석 페이지
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <span className="mr-2 text-blue-500">•</span>
+                  재고/발주/폐기/상품/유통기한 페이지
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <span className="mr-2 text-blue-500">•</span>
+                  실시간 알림
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <span className="mr-2 text-blue-500">•</span>
+                  AI 챗봇
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-700">GitHub 레포지토리</p>
+              <p className="mt-2 text-gray-600">
+                <a
+                  href="https://github.com/KDT7team1/backend"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline flex items-center"
+                >
+                  <FaGithub className="inline mr-2" />
+                  github.com/KDT7team1/backend
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -68,11 +89,25 @@ function Projects() {
         <div className="flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden shadow-sm">
           <div className="md:w-1/2 p-6 flex flex-col justify-center">
             <h3 className="text-xl font-bold text-gray-800 mb-3">Overview</h3>
-            <p className="text-gray-700">
-              직관적인 대시보드를 통해 매장 운영에 필요한 핵심 정보를 한눈에
-              파악할 수 있도록 설계했습니다. 데이터 시각화와 AI 기반 추천
-              시스템으로 점주의 의사결정을 지원합니다.
-            </p>
+
+            <ul className="text-gray-700">
+              <li>
+                • 무인매장 운영에 필요한 매출/재고/폐기/발주 관리, 장바구니 분석
+                기능을 통합 제공
+              </li>
+              <li>
+                • 점주는 웹 대시보드, 고객은 키오스크 화면을 통해 매장을 이용
+              </li>
+              <li>• 유통기한 기반 재고 관리 및 할인·폐기 처리 기능 구현</li>
+              <li>
+                • SSE 기반 실시간 알림으로 결제, 재고 부족, 폐기 상황 실시간
+                대응
+              </li>
+              <li>
+                • 장바구니 분석을 통해 연관 상품 추천 및 시간대별 판매 트렌드
+                제공
+              </li>
+            </ul>
           </div>
           <div className="md:w-1/2">
             <img
@@ -98,7 +133,7 @@ function Projects() {
         </p>
 
         <div className="flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <div className="md:w-1/2 p-6">
+          <div className=" p-6">
             <div className="mb-6">
               <h3 className="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-full mb-3">
                 Detail
@@ -174,13 +209,6 @@ function Projects() {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2">
-            <img
-              src={cartAnalysisImage || "/placeholder.svg"}
-              alt="장바구니 분석 화면"
-              className="w-full h-full object-cover"
-            />
-          </div>
         </div>
       </div>
 
@@ -198,7 +226,7 @@ function Projects() {
         </p>
 
         <div className="flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <div className="md:w-1/2 p-6">
+          <div className=" p-6">
             <div className="mb-6">
               <h3 className="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-full mb-3">
                 Detail
@@ -264,13 +292,6 @@ function Projects() {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2">
-            <img
-              src={cartAnalysisImage || "/placeholder.svg"}
-              alt="발주 페이지 화면"
-              className="w-full h-full object-cover"
-            />
-          </div>
         </div>
       </div>
 
@@ -288,7 +309,7 @@ function Projects() {
         </p>
 
         <div className="flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <div className="md:w-1/2 p-6">
+          <div className=" p-6">
             <div className="mb-6">
               <h3 className="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-full mb-3">
                 Detail
@@ -366,13 +387,6 @@ function Projects() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="md:w-1/2">
-            <img
-              src={cartAnalysisImage || "/placeholder.svg"}
-              alt="실시간 알림 화면"
-              className="w-full h-full object-cover"
-            />
           </div>
         </div>
       </div>
