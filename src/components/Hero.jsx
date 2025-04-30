@@ -32,7 +32,7 @@ function Hero() {
           </h3>
         </div>
 
-        <div className="flex flex-col items-center md:items-end gap-4">
+        <div className="flex flex-col items-center md:items-end gap-4 ">
           <div className="flex gap-4">
             <a
               href="https://github.com/hyeyeon9"
@@ -78,7 +78,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-3 ml-3">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             안녕하세요, 구혜연입니다.
           </h2>
@@ -102,7 +102,7 @@ function Hero() {
       </div>
 
       {/* 스킬 섹션 */}
-      <div className="mb-16">
+      <div className="mb-16" id="skills">
         <div className="flex items-center gap-3 mb-8">
           <div className="h-10 w-1 bg-blue-500 rounded-full"></div>
           <h2 className="text-3xl font-bold text-gray-800">Skills</h2>
@@ -200,7 +200,7 @@ function Hero() {
       </div>
 
       {/* 학력 및 경력 섹션 */}
-      <div className="mb-16">
+      <div className="mb-16" id="experience">
         <div className="flex items-center gap-3 mb-8">
           <div className="h-10 w-1 bg-blue-500 rounded-full"></div>
           <h2 className="text-3xl font-bold text-gray-800">학력 및 경력</h2>
@@ -322,7 +322,7 @@ function Hero() {
       </div>
 
       {/* 핵심 역량 섹션 */}
-      <div>
+      <div id="strength">
         <div className="flex items-center gap-3 mb-8">
           <div className="h-10 w-1 bg-blue-500 rounded-full"></div>
           <h2 className="text-3xl font-bold text-gray-800">핵심 역량</h2>
