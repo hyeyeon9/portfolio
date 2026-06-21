@@ -1,0 +1,71 @@
+.laptopWrap {
+  position: relative;
+  width: clamp(300px, 65vw, 680px);
+  transform-style: preserve-3d;
+  transform: translateY(42px) rotateX(18deg) scale(0.5);
+}
+
+/* Lid (screen) */
+.lid {
+  width: 100%;
+  position: relative;
+  background: #1e2026;
+  border-radius: 12px 12px 0 0;
+  border: 3px solid #111318;
+  overflow: hidden;
+  /* 16:10 ratio via padding-top */
+  padding-top: 62.5%;
+}
+
+.screenInner {
+  position: absolute;
+  inset: 6px;
+  background: #0d0f13;
+  border-radius: 7px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.screenContent {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hinge */
+.hinge {
+  width: 90%;
+  margin: 0 auto;
+  height: 8px;
+  background: linear-gradient(180deg, #141519, #0d0f13);
+  border-radius: 0 0 3px 3px;
+}
+
+/* Keyboard deck */
+.deck {
+  width: 108%;
+  margin-left: -4%;
+  height: 22px;
+  background: #1a1d23;
+  border-radius: 0 0 10px 10px;
+  border: 2px solid #111318;
+  border-top: none;
+  position: relative;
+}
+
+.deck::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #0d0f13;
+  border-radius: 2px;
+}
