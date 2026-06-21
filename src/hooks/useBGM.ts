@@ -8,6 +8,7 @@ export const BGM_TRACKS = [
 let _audio: HTMLAudioElement | null = null;
 let _idx = 0;
 let _playing = false;
+let _autoStarted = false;
 const _subs = new Set<() => void>();
 
 function notify() { _subs.forEach(fn => fn()); }
@@ -53,6 +54,19 @@ export function useBGM() {
   const [, forceUpdate] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => bgmSingleton.subscribe(forceUpdate), []);
+
+  useEffect(() => {
+    if (_autoStarted) return;
+    const start = () => {
+      if (!_autoStarted && !_playing) {
+        _autoStarted = true;
+        bgmSingleton.toggle();
+      }
+      document.removeEventListener('click', start);
+    };
+    document.addEventListener('click', start);
+    return () => document.removeEventListener('click', start);
+  }, []);
 
   return {
     isPlaying: bgmSingleton.isPlaying,
