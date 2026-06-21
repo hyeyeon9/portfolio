@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import styles from './LaptopThree.module.css';
 import ProjectCarousel from './ProjectCarousel';
 import { useSound } from '../../hooks/useSound';
+import { useBGM } from '../../hooks/useBGM';
 import type { Project } from '../../types';
 
 interface Props {
@@ -22,7 +23,8 @@ export default function LaptopThree({ projects, scrollProgress }: Props) {
   const rafRef = useRef(0);
   const [docked, setDocked] = useState(false);
   const [bgmOn, setBgmOn] = useState(false);
-  const { click, hover, toggleBGM } = useSound();
+  const { click, hover } = useSound();
+  const { toggle: toggleBGM, isPlaying: bgmPlaying } = useBGM();
 
   useEffect(() => { scrollRef.current = scrollProgress; }, [scrollProgress]);
 
@@ -228,10 +230,11 @@ export default function LaptopThree({ projects, scrollProgress }: Props) {
   }, []);
 
   const handleBGM = useCallback(() => {
-    const on = toggleBGM();
-    setBgmOn(on);
+    toggleBGM();
     click();
   }, [toggleBGM, click]);
+
+  useEffect(() => { setBgmOn(bgmPlaying); }, [bgmPlaying]);
 
   return (
     <div className={styles.wrapper}>
