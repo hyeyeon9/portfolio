@@ -73,7 +73,25 @@ export const projects: Project[] = [
       "마이페이지, 스크랩한 스터디, AWS S3 프로필 사진 업로드",
       "로그인 / 회원가입 / 스크랩 / 댓글 기능",
     ],
+    challenges: [
+      {
+        title: "이미지 최적화",
+        problem: "대용량 이미지로 인한 LCP 저하 (2,560ms)",
+        solution: "PNG → WebP 변환, fill 대신 width/height 명시 적용. 이미지 용량 1.5MB → 28KB (95% 감소), LCP → 690ms (73% 개선)",
+      },
+      {
+        title: "Server Actions vs API Routes",
+        problem: "댓글 기능을 Server Actions로 구현했더니 전체 페이지가 리렌더링되는 문제 발생",
+        solution: "API Route + fetch로 전환해 댓글 영역만 부분 렌더링 처리. SSR/CSR 특성을 고려한 방식 선택",
+      },
+      {
+        title: "Hydration 불일치 해결",
+        problem: "SSR/CSR 시점 차이로 Date 렌더링 결과가 달라 'Text content did not match' 경고 발생",
+        solution: "시간 처리 로직을 useEffect 내부로 이동해 CSR에서만 실행되도록 수정",
+      },
+    ],
     github: "https://github.com/hyeyeon9/groupie",
+    url: "https://groupie-puhj1k9hm-hyeyeon9s-projects.vercel.app/study",
   },
   {
     title: "interview-notes",

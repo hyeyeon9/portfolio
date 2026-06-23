@@ -29,6 +29,12 @@ export interface SkillGroup {
   items: Skill[];
 }
 
+export interface Challenge {
+  title: string;
+  problem: string;
+  solution: string;
+}
+
 export interface Project {
   title: string;
   category: string;
@@ -39,9 +45,10 @@ export interface Project {
   role: string;
   summary: string;
   thumbnail?: string;
-  images?: string[];       // 여러 스크린샷 (예: ['/projects/daily24-1.png', ...])
+  images?: string[];
   stack: string[];
   features: string[];
+  challenges?: Challenge[];
   github?: string;
   url?: string;
 }

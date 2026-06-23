@@ -219,6 +219,77 @@
   white-space: pre-line;
 }
 
+/* ── Challenges ── */
+.challengeSection {
+  padding: 0 48px 56px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.challengeLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--faint);
+  margin-bottom: 20px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.challengeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.challengeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.challengeTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.challengeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.challengeTag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--surface-2);
+  color: var(--muted);
+  white-space: nowrap;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.challengeTagSolution {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.challengeDesc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
 /* ── Image section ── */
 .imageSection {
   padding: 0 48px 64px;

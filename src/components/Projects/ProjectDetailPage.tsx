@@ -177,6 +177,28 @@ export default function ProjectDetailPage({
         </div>
       </div>
 
+      {/* ── Challenges ── */}
+      {project.challenges && project.challenges.length > 0 && (
+        <div className={styles.challengeSection}>
+          <p className={styles.challengeLabel}>PROBLEM SOLVING</p>
+          <div className={styles.challengeList}>
+            {project.challenges.map((c, i) => (
+              <div key={i} className={styles.challengeItem}>
+                <span className={styles.challengeTitle}>{c.title}</span>
+                <div className={styles.challengeRow}>
+                  <span className={styles.challengeTag}>문제</span>
+                  <p className={styles.challengeDesc}>{c.problem}</p>
+                </div>
+                <div className={styles.challengeRow}>
+                  <span className={`${styles.challengeTag} ${styles.challengeTagSolution}`}>해결</span>
+                  <p className={styles.challengeDesc}>{c.solution}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* ── Scroll-reveal images with framer-motion ── */}
       {images.length > 0 && (
         <div className={styles.imageSection}>
