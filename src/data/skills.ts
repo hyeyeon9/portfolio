@@ -118,7 +118,7 @@ export const skillGroups: SkillGroup[] = [
       },
       {
         name: 'FastAPI / Spring Boot',
-        level: 'Basic',
+        level: 'Intermediate',
         details: [
           'REST API 설계 및 구현 경험',
           'FastAPI 기반 AI 모델 서빙 서버 연동',
