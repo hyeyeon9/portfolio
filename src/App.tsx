@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Lenis from 'lenis';
 import { useTheme } from './hooks/useTheme';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -54,11 +55,34 @@ function SectionBlock({ title, sub, delay = 0, children }: {
 export default function App() {
   const { theme, toggle } = useTheme();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   useScrollReveal();
+
+  /* Lenis smooth scroll */
+  useEffect(() => {
+    const lenis = new Lenis({ lerp: 0.08 });
+    lenisRef.current = lenis;
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   /* Scroll to top on every navigation (enter or leave project) */
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [selectedProject]);
 
   /* ── Render ── */
