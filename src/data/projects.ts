@@ -35,6 +35,23 @@ export const projects: Project[] = [
       "폐기 통계\n월별 폐기 분포 도넛 차트, 집중 관리 품목(2개월 연속 상위) 강조 분석",
       "AI 챗봇\nLangChain RAG 구조로 판매 데이터를 요약해 답변하는 데이터 분석 챗봇",
     ],
+    challenges: [
+      {
+        title: "Nivo 히트맵 데이터 포맷 변환",
+        problem: "히트맵을 렌더링할 때 에러 없이 차트가 아예 표시되지 않는 이슈 발생",
+        solution: "공식 문서 확인 후 itemset_a·b를 세로/가로축으로 매핑하고 confidence를 y값으로 변환하는 가공 로직 구현. 백엔드 응답을 프론트 요구 포맷에 맞게 직접 변환하는 과정의 중요성을 체감",
+      },
+      {
+        title: "재고 소진 예측 기반 발주 추천",
+        problem: "점주가 발주 수량을 매번 직접 판단해야 해 과잉 발주·품절이 반복되는 문제",
+        solution: "최근 7일 평균 판매량으로 소진 일수(daysLeft)를 예측하고 부족분만큼 자동 추천하는 로직을 useOrderRecommendation 커스텀 훅으로 분리해 재사용성 확보",
+      },
+      {
+        title: "SSE 알림 신뢰성 설계",
+        problem: "단방향 SSE 특성상 새로고침 시 알림 소실, 일시적 연결 끊김 발생. 여러 이벤트를 한눈에 파악하기 어렵다는 UX 문제도 존재",
+        solution: "알림 수신 시 localStorage에 저장해 새로고침 후에도 유지, 연결 끊김 시 재귀적 재연결 구현. 재고·폐기 알림은 메시지+유형 기준 중복 제거, 탭별 필터링과 읽음 표시로 UX 개선",
+      },
+    ],
     github: "https://github.com/hyeyeon9/frontend",
   },
   {
