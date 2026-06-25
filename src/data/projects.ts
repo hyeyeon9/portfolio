@@ -38,18 +38,18 @@ export const projects: Project[] = [
     challenges: [
       {
         title: "Nivo 히트맵 데이터 포맷 변환",
-        problem: "히트맵을 렌더링할 때 에러 없이 차트가 아예 표시되지 않는 이슈 발생",
-        solution: "공식 문서 확인 후 itemset_a·b를 세로/가로축으로 매핑하고 confidence를 y값으로 변환하는 가공 로직 구현. 백엔드 응답을 프론트 요구 포맷에 맞게 직접 변환하는 과정의 중요성을 체감",
+        problem: "히트맵 렌더링 시 에러 없이 차트가 아예 표시되지 않는 이슈 발생",
+        solution: "공식 문서 확인 후 itemset_a·b를 세로/가로축으로 매핑, confidence를 y값으로 변환하는 가공 로직 직접 구현. Spring Boot API 응답을 프론트 요구 포맷에 맞게 변환하는 중요성 체감",
       },
       {
-        title: "재고 소진 예측 기반 발주 추천",
-        problem: "점주가 발주 수량을 매번 직접 판단해야 해 과잉 발주·품절이 반복되는 문제",
-        solution: "최근 7일 평균 판매량으로 소진 일수(daysLeft)를 예측하고 부족분만큼 자동 추천하는 로직을 useOrderRecommendation 커스텀 훅으로 분리해 재사용성 확보",
+        title: "Spring Boot SSE 알림 서버 설계",
+        problem: "결제·재고 부족·자동 폐기 등 다양한 이벤트를 점주에게 실시간으로 전달해야 했고, 새로고침 시 알림 소실 및 연결 끊김 문제 발생",
+        solution: "Spring Boot SseEmitter로 서버 측 이벤트 스트림 설계, 이벤트 유형별 분기 처리. 프론트에서 localStorage로 알림 유지·재귀 재연결·중복 제거 처리로 신뢰성 확보",
       },
       {
-        title: "SSE 알림 신뢰성 설계",
-        problem: "단방향 SSE 특성상 새로고침 시 알림 소실, 일시적 연결 끊김 발생. 여러 이벤트를 한눈에 파악하기 어렵다는 UX 문제도 존재",
-        solution: "알림 수신 시 localStorage에 저장해 새로고침 후에도 유지, 연결 끊김 시 재귀적 재연결 구현. 재고·폐기 알림은 메시지+유형 기준 중복 제거, 탭별 필터링과 읽음 표시로 UX 개선",
+        title: "FastAPI RAG 챗봇 서버 구축",
+        problem: "판매 CSV 데이터를 GPT에 직접 주입하면 컨텍스트 한계와 비용 문제 발생, 응답이 데이터와 불일치하는 경우도 존재",
+        solution: "FastAPI + LangChain으로 별도 AI 서버 구축. 판매 데이터를 날짜별 청킹 후 FAISS로 검색, GPT-4o로 응답 생성하는 RAG 파이프라인 구현. AWS Beanstalk 배포 후 React 챗봇 UI와 연동",
       },
     ],
     github: "https://github.com/hyeyeon9/frontend",
@@ -105,6 +105,11 @@ export const projects: Project[] = [
         title: "Hydration 불일치 해결",
         problem: "SSR/CSR 시점 차이로 Date 렌더링 결과가 달라 'Text content did not match' 경고 발생",
         solution: "시간 처리 로직을 useEffect 내부로 이동해 CSR에서만 실행되도록 수정",
+      },
+      {
+        title: "DB 쿼리 최적화",
+        problem: "초기 렌더링 속도 저하 (TBT 6.7초) — 한 번에 과도한 데이터 요청, 불필요한 DB 필드 전체 조회",
+        solution: "Prisma select로 필수 필드만 조회, comments.length → _count.comments로 변경. scrap·views·createdAt 복합 인덱스 추가로 정렬 성능 향상",
       },
     ],
     github: "https://github.com/hyeyeon9/groupie",
