@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import Providers from '@/components/Providers'
 import './globals.css'
 
-const BASE_URL = 'https://yeon.dev' // 배포 후 실제 도메인으로 교체
+const BASE_URL = 'https://its-hyeyeon.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'yeon.dev | 구혜연 포트폴리오',
-    template: '%s | yeon.dev',
+    default: '구혜연 포트폴리오',
+    template: '%s | 구혜연',
   },
   description: '사용자가 머무는 화면을 만드는 프론트엔드 개발자 구혜연의 포트폴리오입니다. React · TypeScript · Next.js 기반 프로젝트 경험을 담았습니다.',
   keywords: ['프론트엔드 개발자', '구혜연', 'React', 'TypeScript', 'Next.js', '포트폴리오', 'portfolio'],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: '구혜연 | 프론트엔드 개발자 포트폴리오',
     description: '사용자가 머무는 화면을 만드는 프론트엔드 개발자 구혜연입니다.',
     url: BASE_URL,
-    siteName: 'yeon.dev',
+    siteName: 'its-hyeyeon.vercel.app',
     images: [
       {
         url: '/og-image.png', // public/og-image.png 에 1200×630 이미지 추가 필요

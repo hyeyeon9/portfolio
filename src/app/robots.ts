@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://yeon.dev' // 배포 후 실제 도메인으로 교체
+const BASE_URL = 'https://its-hyeyeon.vercel.app'
 
 export default function robots(): MetadataRoute.Robots {
   return {
