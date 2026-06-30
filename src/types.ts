@@ -36,6 +36,7 @@ export interface Challenge {
 }
 
 export interface Project {
+  slug: string;
   title: string;
   category: string;
   accent: string;

@@ -22,7 +22,6 @@ export default function LaptopThree({ projects, scrollProgress }: Props) {
   const dockedRef = useRef(false);
   const rafRef = useRef(0);
   const [docked, setDocked] = useState(false);
-  const [bgmOn, setBgmOn] = useState(false);
   const { click, hover } = useSound();
   const { toggle: toggleBGM, isPlaying: bgmPlaying } = useBGM();
 
@@ -234,8 +233,6 @@ export default function LaptopThree({ projects, scrollProgress }: Props) {
     click();
   }, [toggleBGM, click]);
 
-  useEffect(() => { setBgmOn(bgmPlaying); }, [bgmPlaying]);
-
   return (
     <div className={styles.wrapper}>
       <div ref={canvasRef} className={styles.canvas} />
@@ -253,9 +250,9 @@ export default function LaptopThree({ projects, scrollProgress }: Props) {
         className={styles.bgmBtn}
         onClick={handleBGM}
         onMouseEnter={hover}
-        aria-label={bgmOn ? 'BGM 끄기' : 'BGM 켜기'}
+        aria-label={bgmPlaying ? 'BGM 끄기' : 'BGM 켜기'}
       >
-        {bgmOn ? '🔊 BGM ON' : '🔇 BGM'}
+        {bgmPlaying ? '🔊 BGM ON' : '🔇 BGM'}
       </button>
     </div>
   );

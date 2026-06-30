@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import styles from './ProjectDetailPage.module.css';
-import type { Project } from '../../types';
-import BGMWidget from '../BGMWidget';
-import { useSound } from '../../hooks/useSound';
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+import styles from './ProjectDetailPage.module.css'
+import type { Project } from '../../types'
+import BGMWidget from '../BGMWidget'
+import { useSound } from '../../hooks/useSound'
+import { useTheme } from '../../hooks/useTheme'
+import { projects } from '../../data/projects'
 
 const MoonIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </svg>
-);
+)
 
 const SunIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -19,7 +24,7 @@ const SunIcon = () => (
     <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
   </svg>
-);
+)
 
 /* ── Tech chip — solid vivid palette ── */
 const CHIP_GROUPS: Record<string, number> = {
@@ -29,7 +34,7 @@ const CHIP_GROUPS: Record<string, number> = {
   'Redis': 3, 'HTML5': 3, 'PyTorch': 3, 'ResNet50': 3, 'Stable Diffusion': 3,
   'CSS': 4, 'CSS3': 4, 'Zustand': 4, 'Tailwind CSS': 4, 'Materialize CSS': 4,
   'Next.js': 5, 'Vercel': 5, 'Prisma': 5, 'React Router': 5, 'Flask-CORS': 5,
-};
+}
 const PALETTE: [string, string][] = [
   ['#2563eb', '#fff'],
   ['#16a34a', '#fff'],
@@ -37,25 +42,20 @@ const PALETTE: [string, string][] = [
   ['#dc2626', '#fff'],
   ['#7c3aed', '#fff'],
   ['#475569', '#fff'],
-];
+]
 function getChipStyle(tech: string) {
-  const idx = CHIP_GROUPS[tech] ?? (tech.charCodeAt(0) % 6);
-  const [bg, fg] = PALETTE[idx];
-  return { backgroundColor: bg, color: fg };
+  const idx = CHIP_GROUPS[tech] ?? (tech.charCodeAt(0) % 6)
+  const [bg, fg] = PALETTE[idx]
+  return { backgroundColor: bg, color: fg }
 }
 
-type Orientation = 'portrait' | 'landscape' | null;
+type Orientation = 'portrait' | 'landscape' | null
 
 interface Props {
-  project: Project;
-  onBack: () => void;
-  theme: 'light' | 'dark';
-  onToggleTheme: () => void;
-  projects: Project[];
-  onSelectProject: (p: Project) => void;
+  project: Project
 }
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 const imgVariants = {
   hidden:  { opacity: 0, y: 52 },
@@ -64,42 +64,53 @@ const imgVariants = {
     y: 0,
     transition: { duration: 0.7, ease: EASE, delay: (i % 4) * 0.09 },
   }),
-};
+}
 
 const nextVariants = {
   hidden:  { opacity: 0, y: 36 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
-};
+}
 
-export default function ProjectDetailPage({
-  project, onBack, theme, onToggleTheme, projects, onSelectProject,
-}: Props) {
+export default function ProjectDetailPage({ project }: Props) {
+  const router = useRouter()
+  const { theme, toggle } = useTheme()
+  const { click, hover } = useSound()
+
   const images: string[] =
     project.images?.length ? project.images
     : project.thumbnail     ? [project.thumbnail]
-    : [];
+    : []
 
-  const currentIdx  = projects.indexOf(project);
-  const nextProject = projects[(currentIdx + 1) % projects.length];
+  const currentIdx  = projects.indexOf(project)
+  const nextProject = projects[(currentIdx + 1) % projects.length]
 
-  const [orientations, setOrientations] = useState<Orientation[]>(() => images.map(() => null));
-  const { click, hover } = useSound();
+  const [orientations, setOrientations] = useState<Orientation[]>(() => images.map(() => null))
 
   /* Portrait/landscape detection */
   useEffect(() => {
     images.forEach((src, i) => {
-      const img = new window.Image();
+      const img = new window.Image()
       img.onload = () => {
-        const isPortrait = img.naturalHeight > img.naturalWidth * 1.2;
+        const isPortrait = img.naturalHeight > img.naturalWidth * 1.2
         setOrientations(prev => {
-          const next = [...prev];
-          next[i] = isPortrait ? 'portrait' : 'landscape';
-          return next;
-        });
-      };
-      img.src = src;
-    });
-  }, [images.length]); // eslint-disable-line react-hooks/exhaustive-deps
+          const next = [...prev]
+          next[i] = isPortrait ? 'portrait' : 'landscape'
+          return next
+        })
+      }
+      img.src = src
+    })
+  }, [images.length]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleBack = () => {
+    click()
+    router.push('/')
+  }
+
+  const handleNextProject = () => {
+    click()
+    router.push(`/projects/${nextProject.slug}`)
+  }
 
   return (
     <div className={styles.page}>
@@ -108,7 +119,7 @@ export default function ProjectDetailPage({
       <header className={styles.topBar}>
         <button
           className={styles.backBtn}
-          onClick={() => { click(); onBack(); }}
+          onClick={handleBack}
           onMouseEnter={hover}
           aria-label="목록으로 돌아가기"
         >
@@ -119,7 +130,7 @@ export default function ProjectDetailPage({
           <BGMWidget />
           <button
             className={styles.themeBtn}
-            onClick={() => { click(); onToggleTheme(); }}
+            onClick={() => { click(); toggle() }}
             onMouseEnter={hover}
             aria-label={theme === 'light' ? '다크 모드' : '라이트 모드'}
             title={theme === 'light' ? 'Dark mode' : 'Light mode'}
@@ -206,9 +217,9 @@ export default function ProjectDetailPage({
 
           <div className={styles.imageGrid}>
             {images.map((img, i) => {
-              const ori = orientations[i];
-              const isPortrait = ori === 'portrait';
-              const caption = project.features[i];
+              const ori = orientations[i]
+              const isPortrait = ori === 'portrait'
+              const caption = project.features[i]
               return (
                 <motion.div
                   key={i}
@@ -236,7 +247,7 @@ export default function ProjectDetailPage({
                     </div>
                   )}
                 </motion.div>
-              );
+              )
             })}
           </div>
         </div>
@@ -252,7 +263,7 @@ export default function ProjectDetailPage({
       >
         <button
           className={styles.nextCard}
-          onClick={() => { click(); onSelectProject(nextProject); window.scrollTo({ top: 0, behavior: 'instant' }); }}
+          onClick={handleNextProject}
           onMouseEnter={hover}
         >
           {nextProject.thumbnail && (
@@ -271,5 +282,5 @@ export default function ProjectDetailPage({
       </motion.div>
 
     </div>
-  );
+  )
 }

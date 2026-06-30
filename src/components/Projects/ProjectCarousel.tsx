@@ -46,7 +46,7 @@ export default function ProjectCarousel({
     if (dragStart.current === null) return;
     const delta = e.clientX - dragStart.current;
     dragStart.current = null;
-    if (Math.abs(delta) > 40) delta < 0 ? nextProject() : prevProject();
+    if (Math.abs(delta) > 40) { if (delta < 0) nextProject(); else prevProject(); }
   };
 
   const currentImage = images[imageIdx];

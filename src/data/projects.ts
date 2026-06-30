@@ -2,6 +2,7 @@ import type { Project } from "../types";
 
 export const projects: Project[] = [
   {
+    slug: "daily24",
     title: "Daily24",
     category: "웹",
     accent: "#2f6bff",
@@ -55,6 +56,7 @@ export const projects: Project[] = [
     github: "https://github.com/hyeyeon9/frontend",
   },
   {
+    slug: "groupie",
     title: "Groupie",
     category: "웹",
     accent: "#2f6bff",
@@ -116,6 +118,7 @@ export const projects: Project[] = [
     url: "https://groupie-puhj1k9hm-hyeyeon9s-projects.vercel.app/study",
   },
   {
+    slug: "interview-notes",
     title: "interview-notes",
     category: "웹",
     accent: "#2f6bff",
@@ -141,6 +144,7 @@ export const projects: Project[] = [
     github: "https://github.com/hyeyeon9/interview-notes",
   },
   {
+    slug: "mbti",
     title: "MBTI 프로필 테스트",
     category: "웹",
     accent: "#7c3aed",
@@ -174,6 +178,7 @@ export const projects: Project[] = [
     url: "https://mbti-test-nncsy2asc-hyeyeon9s-projects.vercel.app/",
   },
   {
+    slug: "otcha",
     title: "Otcha",
     category: "웹",
     accent: "#7c5cfc",
@@ -208,6 +213,7 @@ export const projects: Project[] = [
     github: "https://github.com/hyeyeon9/otcha",
   },
   {
+    slug: "sogeumstory",
     title: "SogeumStory",
     category: "웹",
     accent: "#0ea5b7",
@@ -243,6 +249,7 @@ export const projects: Project[] = [
     github: "https://github.com/hyeyeon9/sogeumStory",
   },
   {
+    slug: "sunday-game",
     title: "sunday_game",
     category: "웹",
     accent: "#2f6bff",
